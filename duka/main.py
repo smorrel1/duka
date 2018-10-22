@@ -51,11 +51,14 @@ def main_batch_download():
     print('Starting download')
     set_up_signals()
     # symbols = ['AUDUSD', 'EURUSD', 'GBPUSD', 'NZDUSD', 'USDCAD', 'USDCHF', 'USDJPY'][2: 3]
-    symbols = ['USDJPY', 'EURUSD', 'GBPUSD', 'GBPJPY', 'EURAUD', 'EURJPY', 'EURNZD', 'AUDUSD', 'GBPAUD', 'NZDUSD', 'EURCAD', 'CADJPY', 'USDCAD', 'GBPCHF', 'NZDCAD', 'EURCHF', 'EURGBP', 'AUDCHF', 'NZDJPY', 'AUDJPY', 'CHFJPY', 'GBPCAD', 'AUDCAD', 'USDCHF', 'GBPNZD'][0: 3]
+    # symbols = ['USDJPY', 'EURUSD', 'GBPUSD']  # first run from Mac, starting 2003, 5, 4
+    symbols = ['GBPJPY', 'EURJPY', 'AUDUSD', 'NZDUSD']  # from PC1, starting 2003, 8, 03
+    # symbols = ['EURAUD', 'EURNZD', 'GBPAUD', 'EURCAD', 'CADJPY', 'USDCAD', 'GBPCHF', 'NZDCAD', 'EURCHF', 'EURGBP', 'AUDCHF', 'NZDJPY', 'AUDJPY', 'CHFJPY', 'GBPCAD', 'AUDCAD', 'USDCHF', 'GBPNZD']  # not started yet
     # start = date(2003, 5, 4)  # y m d
+    start = date(2003, 8, 3)  # y m d
     # start = date(2003, 12, 7)  # y m d
     # start = date(2004, 4, 25)  # y m d
-    start = date(2004, 9, 26)  # y m d
+    # start = date(2004, 9, 26)  # y m d
     for i in range(0, (date.today()-start).days, 7):
         new_start = start + timedelta(days=i)
         end = new_start + timedelta(days=6)
