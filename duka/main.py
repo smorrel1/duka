@@ -50,12 +50,12 @@ def main_batch_download():
     #                   python                  yyy/mm/dd
     print('Starting download')
     set_up_signals()
-    # symbols = ['AUDUSD', 'EURUSD', 'GBPUSD', 'NZDUSD', 'USDCAD', 'USDCHF', 'USDJPY'][2: 3]
-    # symbols = ['USDJPY', 'EURUSD', 'GBPUSD']  # first run from Mac, starting 2003, 5, 4
-    symbols = ['GBPJPY', 'EURJPY', 'AUDUSD', 'NZDUSD']  # from PC1, starting 2003, 8, 03
+    symbols = ['USDJPY', 'EURUSD', 'GBPUSD']  # first run from Mac, starting 2003, 5, 4, and PC1 stating 2010
+    # symbols = ['GBPJPY', 'EURJPY', 'AUDUSD', 'NZDUSD']  # from PC1, starting 2003, 8, 03
     # symbols = ['EURAUD', 'EURNZD', 'GBPAUD', 'EURCAD', 'CADJPY', 'USDCAD', 'GBPCHF', 'NZDCAD', 'EURCHF', 'EURGBP', 'AUDCHF', 'NZDJPY', 'AUDJPY', 'CHFJPY', 'GBPCAD', 'AUDCAD', 'USDCHF', 'GBPNZD']  # not started yet
-    # start = date(2003, 5, 4)  # y m d
-    start = date(2003, 8, 3)  # y m d
+    # start = date(2003, 5, 4)  # y m d from Mac
+    start = date(2010, 1, 1)  # y m d from PC1
+    # start = date(2003, 8, 3)  # y m d for GBPJPY group
     # start = date(2003, 12, 7)  # y m d
     # start = date(2004, 4, 25)  # y m d
     # start = date(2004, 9, 26)  # y m d
