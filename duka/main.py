@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.5
 
 import argparse
+import os, time
 from datetime import date, timedelta
 
 from duka.app import app
@@ -39,8 +40,39 @@ def main():
         end = args.day
 
     set_up_signals()
+    print(args.symbols, start, end, args.thread, args.candle, args.folder, args.header)
     app(args.symbols, start, end, args.thread, args.candle, args.folder, args.header)
+
+def main_batch_download():
+    '''Download tick series one day at a time.'''
+    #  date formats:    website download page   yyyy/mm/dd
+    #                   url's                   yyyy/
+    #                   python                  yyy/mm/dd
+    print('Starting download')
+    set_up_signals()
+    # symbols = ['AUDUSD', 'EURUSD', 'GBPUSD', 'NZDUSD', 'USDCAD', 'USDCHF', 'USDJPY'][2: 3]
+    symbols = ['USDJPY', 'EURUSD', 'GBPUSD', 'GBPJPY', 'EURAUD', 'EURJPY', 'EURNZD', 'AUDUSD', 'GBPAUD', 'NZDUSD', 'EURCAD', 'CADJPY', 'USDCAD', 'GBPCHF', 'NZDCAD', 'EURCHF', 'EURGBP', 'AUDCHF', 'NZDJPY', 'AUDJPY', 'CHFJPY', 'GBPCAD', 'AUDCAD', 'USDCHF', 'GBPNZD'][0: 3]
+    # start = date(2003, 5, 4)  # y m d
+    # start = date(2003, 12, 7)  # y m d
+    # start = date(2004, 4, 25)  # y m d
+    start = date(2004, 9, 26)  # y m d
+    for i in range(0, (date.today()-start).days, 7):
+        new_start = start + timedelta(days=i)
+        end = new_start + timedelta(days=6)
+        thread = 25
+        candle = TimeFrame.TICK
+        folder = '/Volumes/SDcard/' if os.getenv('HOME') == '/Users/stephenmorrell' else '/home/smorrell/'
+        folder += 'ForexDataDukas/'
+        print('calling app with', symbols, new_start, end, thread, candle, folder, True)
+        app(symbols, new_start, end, thread, candle, folder, True)
+        if i%(7*4*4) == 0 and i > 0:  # pause every 4 months in case of throttling
+            print('sleeping for 5 mins', time.time())
+            time.sleep(300)
 
 
 if __name__ == '__main__':
-    main()
+    if 0:
+        main()
+    else:
+        main_batch_download()
+

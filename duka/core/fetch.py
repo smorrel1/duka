@@ -22,6 +22,8 @@ async def get(url):
     for i in range(ATTEMPTS):
         try:
             res = await loop.run_in_executor(None, lambda: requests.get(url, stream=True))
+            if res.status_code != 200 and res.status_code != 503:  # most are success or waiting for server
+                print(res.status_code, res.url)
             if res.status_code == 200:
                 for chunk in res.iter_content(DEFAULT_BUFFER_SIZE):
                     buffer.write(chunk)
